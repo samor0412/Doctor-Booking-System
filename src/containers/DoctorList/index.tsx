@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from 'react-query';
-import getDoctor, { Doctor } from 'api/getDoctor';
+import { Doctor } from 'api/types';
 import DoctorCard from './DoctorCard';
 import { HEADER_HEIGHT } from 'components/Header';
 import LoadingOverlay from 'components/Loading';
+import getDoctors from 'api/getDoctors';
+import { Error } from 'styles';
 
 const Container = styled.div`
   padding-top: ${HEADER_HEIGHT};
@@ -18,14 +20,9 @@ const SearchContainer = styled.div`
   margin: 4rem;
   gap: 4rem 3.33%;
 `;
-const Error = styled.div`
-  margin: 4rem;
-  font-size: 1.4rem;
-  text-align: center;
-`;
 
 const DoctorList = () => {
-  const { isLoading, isError, data: doctors } = useQuery<Doctor[]>('doctors', getDoctor);
+  const { isLoading, isError, data: doctors } = useQuery<Doctor[]>('doctors', getDoctors);
 
   return (
     <Container>

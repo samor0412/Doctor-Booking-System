@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { primary, secondary } from 'colors';
-import { Doctor } from 'api/getDoctor';
+import { Doctor } from 'api/types';
 
 const HoverMask = styled.div`
   width: 100%;
@@ -45,8 +45,8 @@ interface Props {
   doctor: Doctor;
 }
 const DoctorCard: React.FC<Props> = ({ doctor }) => (
-  <Card to="/doctor-profile">
-    <ProfileImg src={'defaultDoctorProfileImage.svg'}></ProfileImg>
+  <Card to={`/doctor-profile/${doctor.id}`}>
+    <ProfileImg src={`${process.env.PUBLIC_URL}/defaultDoctorProfileImage.svg`}></ProfileImg>
     <Name>{doctor.name}</Name>
     <HoverMask>More</HoverMask>
   </Card>
