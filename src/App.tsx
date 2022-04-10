@@ -15,7 +15,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/doctor-list" element={<DoctorList />} />
-            <Route path="/doctor-profile" element={<DoctorProfile />} />
+            <Route path="/doctor-profile/:id" element={<DoctorProfile />} />
             <Route path="*" element={<Navigate replace to="/doctor-list" />} />
           </Routes>
         </BrowserRouter>

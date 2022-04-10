@@ -1,27 +1,12 @@
 import axiosInstance from './axiosInstance';
+import { Doctor } from './types';
 
-export interface OpeningHour {
-  day: string;
-  end: string;
-  isClosed: boolean;
-  start: string;
-}
-
-export interface Doctor {
+interface Args {
   id: string;
-  address: {
-    district: string;
-    line_1: string;
-    line_2: string;
-  };
-  description: string;
-  name: string;
-  opening_hours: OpeningHour[];
 }
+export type Data = Doctor;
 
-export type Data = Doctor[];
-
-export default async function getDoctor() {
-  const result = await axiosInstance.get<Data>('/doctor');
+export default async function getDoctor({ id }: Args) {
+  const result = await axiosInstance.get<Data>(`/doctor/${id}`);
   return result.data;
 }
