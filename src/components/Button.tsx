@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { LoaderImg } from 'styles';
 import { primary, secondary } from '../colors';
 
 export const HEADER_HEIGHT = '6rem';
@@ -11,6 +12,14 @@ const StyledButton = styled.button<Props>`
   border: none;
   border-radius: 0.4rem;
   font-family: Gilroy, 'Noto Sans TC', sans-serif;
+
+  :disabled,
+  :hover:disabled {
+    background-color: #cbcbcb;
+    color: grey;
+    cursor: default;
+    opacity: 1;
+  }
 
   ${({ buttonType }) => {
     switch (buttonType) {
@@ -50,15 +59,21 @@ const StyledButton = styled.button<Props>`
   }}
 `;
 
+const StyledLoadingImg = styled(LoaderImg)`
+  height: 2rem;
+`;
+
 interface Props {
   buttonType?: 'primary' | 'secondary';
   onClick?: () => void;
+  isLoading?: boolean;
+  disabled?: boolean;
 }
 
-const Button: React.FC<Props> = ({ buttonType, onClick, children, ...props }) => {
+const Button: React.FC<Props> = ({ buttonType, onClick, children, isLoading, ...props }) => {
   return (
     <StyledButton buttonType={buttonType} onClick={onClick} {...props}>
-      {children}
+      {isLoading ? <StyledLoadingImg /> : children}
     </StyledButton>
   );
 };

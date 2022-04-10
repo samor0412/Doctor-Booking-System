@@ -3,11 +3,12 @@ import { Doctor } from 'api/types';
 import Button from 'components/Button';
 import { HEADER_HEIGHT } from 'components/Header';
 import LoadingOverlay from 'components/Loading';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Error } from 'styles';
+import BookingForm from './BookingForm';
 import { getOpeningHourDescriptions } from './getOpeningHourDescriptions';
 
 const Container = styled.div`
@@ -51,6 +52,7 @@ const BookBtn = styled(Button).attrs({ buttonType: 'secondary' })`
 `;
 
 const DoctorProfile = () => {
+  const [isBookingFormOpen, setIsBookingFormOpen] = useState<boolean>(false);
   const { id = '' } = useParams();
   const navigate = useNavigate();
   const {
@@ -78,6 +80,9 @@ const DoctorProfile = () => {
     [doctor?.opening_hours]
   );
 
+  const openBookingForm = useCallback(() => setIsBookingFormOpen(true), [setIsBookingFormOpen]);
+  const closeBookingForm = useCallback(() => setIsBookingFormOpen(false), [setIsBookingFormOpen]);
+
   return (
     <Container>
       <LoadingOverlay isLoading={isLoading}>
@@ -96,10 +101,13 @@ const DoctorProfile = () => {
                 ))}
               </OpeningHours>
             )}
-            <BookBtn>Book Now</BookBtn>
+            <BookBtn onClick={openBookingForm}>Book Now</BookBtn>
           </>
         )}
       </LoadingOverlay>
+      {isBookingFormOpen && doctor && (
+        <BookingForm doctor={doctor} onClose={closeBookingForm}></BookingForm>
+      )}
     </Container>
   );
 };
