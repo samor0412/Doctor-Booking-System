@@ -14,7 +14,7 @@ export const getOpeningHourDescriptions = (openingHours: OpeningHour[]) => {
   //   'isClosed': ['SAT', 'SUN']
   // }
   openingHours.forEach((openingHour) => {
-    if (openingHour.isClosed) {
+    if (!openingHour.isClosed) {
       openingHourDayMap.isClosed.push(openingHour.day);
     } else if (openingHourDayMap[`${openingHour.start}-${openingHour.end}`]) {
       openingHourDayMap[`${openingHour.start}-${openingHour.end}`].push(openingHour.day);
@@ -31,13 +31,14 @@ export const getOpeningHourDescriptions = (openingHours: OpeningHour[]) => {
   // create sorted description array from the map
   const descriptions = Object.keys(openingHourDayMap).map((openingHour) => {
     const days = openingHourDayMap[openingHour];
+    const openingHourText = openingHour === 'isClosed' ? 'CLOSED' : openingHour;
 
     // if all days have the same opening hours, describe as EVERY DAY
     if (days.length === 7) {
-      return `EVERY DAY: ${openingHour}`;
+      return `EVERY DAY: ${openingHourText}`;
     }
     const sortedDays = days.sort((a, b) => SORTED_DAYS.indexOf(a) - SORTED_DAYS.indexOf(b));
-    return `${sortedDays.join(', ')}: ${openingHour}`;
+    return `${sortedDays.join(', ')}: ${openingHourText}`;
   });
 
   return descriptions;
