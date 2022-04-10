@@ -31,7 +31,8 @@
     "lint:fix": "eslint --fix",
     "lint:style": "stylelint **/*.css --fix",
     "check:style": "stylelint **/*.css",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "test:coverage": "react-scripts test --watchAll --coverage"
   },
   "eslintConfig": {
     "extends": [
