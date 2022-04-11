@@ -61,6 +61,9 @@ In this project, I have written a sample test case file. There should be a highe
 4. Event/Error tracking Integration
 Integrate event tracking allows PM and stakeholder to review the user interaction, which can reflect the quality feature/project and make improvement. Some bugs are not easily to found in testing environment, having error tracking allows developer to monitor the existing bugs on production.
 
+5. Mobile Responsive
+Due to limited time, there is no mobile design in this project.
+
 ###Production consideration
 1.  API KEY
 Although API Key is stored in environment file, it is still exposed to the client as it is used for api call in client side. Rate limiting should be implemented in backend
