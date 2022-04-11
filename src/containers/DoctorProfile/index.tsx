@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const DoctorProfileImg = styled.img`
   width: 16rem;
-  max-width: 100%;
+  height: 16rem;
   margin-bottom: 1.4rem;
 `;
 

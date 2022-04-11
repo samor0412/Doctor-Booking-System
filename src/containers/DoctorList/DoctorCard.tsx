@@ -37,8 +37,19 @@ const Name = styled.div`
   padding: 0.6rem;
 `;
 
-const ProfileImg = styled.img`
+const ProfileImgContainer = styled.div`
+  position: relative;
   width: 100%;
+  height: 0;
+  padding-top: 100%;
+`;
+
+const ProfileImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 interface Props {
@@ -46,7 +57,9 @@ interface Props {
 }
 const DoctorCard: React.FC<Props> = ({ doctor }) => (
   <Card to={`/doctor-profile/${doctor.id}`}>
-    <ProfileImg src={`${process.env.PUBLIC_URL}/defaultDoctorProfileImage.svg`}></ProfileImg>
+    <ProfileImgContainer>
+      <ProfileImg src={`${process.env.PUBLIC_URL}/defaultDoctorProfileImage.svg`}></ProfileImg>
+    </ProfileImgContainer>
     <Name>{doctor.name}</Name>
     <HoverMask>More</HoverMask>
   </Card>
