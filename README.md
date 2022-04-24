@@ -64,7 +64,7 @@ Integrate event tracking allows PM and stakeholder to review the user interactio
 5. Mobile Responsive
 Due to limited time, there is no mobile design in this project.
 
-###Production consideration
+### Production consideration
 1.  API KEY
 Although API Key is stored in environment file, it is still exposed to the client as it is used for api call in client side. Rate limiting should be implemented in backend
 
