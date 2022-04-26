@@ -25,6 +25,20 @@ yarn run test:coverage
 ### Hosted Website Link
 https://doctor-booking-kohl.vercel.app/doctor-list
 
+### Basic Requirement
+- See doctors’ profile
+- Check doctors' availability
+- Make a booking
+
+### Api support
+- get a list of doctors
+- Get profiles of a doctor with availability
+- Create bookings
+
+### Pages
+- Doctor List Page
+- Doctor Profile Page + booking
+
 ### Choice of Package
 1. React Query
 It provides a variety of query feature which is very useful in most of the react application. Take this project as an example, Pagination can be easily implemented in Doctor List Page with react query (Not implemented in this project). The drawback is that the data fetched are not supposed be shared as global state of the system, RTK Query in Redux may be a better solution for that.
