@@ -1,4 +1,5 @@
 import { OpeningHour } from 'api/types';
+import { getFloatStringToTime } from 'utils/time';
 
 const SORTED_DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -14,12 +15,19 @@ export const getOpeningHourDescriptions = (openingHours: OpeningHour[]) => {
   //   'isClosed': ['SAT', 'SUN']
   // }
   openingHours.forEach((openingHour) => {
-    if (!openingHour.isClosed) {
+    if (openingHour.isClosed) {
       openingHourDayMap.isClosed.push(openingHour.day);
-    } else if (openingHourDayMap[`${openingHour.start}-${openingHour.end}`]) {
-      openingHourDayMap[`${openingHour.start}-${openingHour.end}`].push(openingHour.day);
+      return;
+    }
+
+    const timeRangeText = `${getFloatStringToTime(openingHour.start)}-${getFloatStringToTime(
+      openingHour.end
+    )}`;
+
+    if (openingHourDayMap[timeRangeText]) {
+      openingHourDayMap[timeRangeText].push(openingHour.day);
     } else {
-      openingHourDayMap[`${openingHour.start}-${openingHour.end}`] = [openingHour.day];
+      openingHourDayMap[timeRangeText] = [openingHour.day];
     }
   });
 
